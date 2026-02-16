@@ -1603,10 +1603,6 @@ function saveCRMConfiguration(id) {
 	var contact_fields_tmp = jQuery("#contact_fields_tmp").val();
 	var leads = "Leads";
 	var contact = "Contacts";
-	if (active_plugin == 'wpzohobiginpro') {
-		leads = "Leads";
-		contact = "Contacts";
-	}
 	var create = "onCreate";
 	var config_data = JSON.parse("" || "{}");
 	//console.log(list);
@@ -1723,6 +1719,12 @@ function SaveCheckPRO(siteurl, module, option, shortcode, onAction) {
 	var crmtype = document.getElementById("lead_crmtype").value;
 	document.getElementById('loading-image').style.display = "block";
 	var bulkaction = jQuery("#bulk-action-selector-top option:selected").text();
+	if (jQuery("#bulk-action-selector-top").val() == '-1') {
+		alert("Please select an option from the Bulk Actions dropdown.");
+		document.getElementById('loading-image').style.display = "none";
+		return false;
+	}
+
 	var form = document.getElementById('field-form');
 	var chkall = form.elements['selectall'];
 	var chkBx_count = form.elements['no_of_rows'].value;
@@ -1739,12 +1741,6 @@ function SaveCheckPRO(siteurl, module, option, shortcode, onAction) {
 			//var element_name = jQuery('#'+element_id).attr('name');
 			//var get_field_id = element_name.split("select");
 			if (jQuery('#select' + i).is(":checked")) {
-				if (bulkaction == 'Disable Field') {
-					var isDisabled = jQuery('#mandatory' + i).prop('disabled');
-					if (isDisabled) {
-						continue;
-					}
-				}
 				chkArray.push(i);
 			}
 			//}
@@ -1813,7 +1809,16 @@ function SaveCheckPRO(siteurl, module, option, shortcode, onAction) {
 				return false;
 			}
 			else {
-				window.location.reload(true);
+				swal({
+					title: "Success!",
+					text: "Form Settings Saved Successfully!",
+					type: "success",
+					timer: 2000,
+					showConfirmButton: false
+				});
+				setTimeout(function () {
+					window.location.reload(true);
+				}, 2000);
 			}
 		},
 		error: function (errorThrown) {
@@ -2051,18 +2056,6 @@ function saveSalesForceAPICredentials() {
 
 //jQuery(".save-zohocrm-config").click(function(e){
 function saveZOHOCRMAPICredentials() {
-	var client_id = jQuery("input[name='key']").val();
-	var client_secret = jQuery("input[name='secret']").val();
-	if (client_id == '' || client_secret == '') {
-		swal("Warning!", "Please fill all fields", "warning");
-		return false;
-	}
-
-	var active_plugin = jQuery("#active_plugin").val();
-	var scope = "ZohoCRM.users.ALL,ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.org.ALL";
-	if (active_plugin == 'wpzohobiginpro') {
-		scope = "ZohoBigin.users.ALL,ZohoBigin.modules.ALL,ZohoBigin.settings.ALL,ZohoBigin.org.ALL,ZohoBigin.settings.fields.ALL,ZohoBigin.settings.modules.ALL";
-	}
 
 	jQuery.ajax({
 		type: 'POST',
@@ -2070,16 +2063,16 @@ function saveZOHOCRMAPICredentials() {
 		dataType: 'json',
 		data: {
 			'action': 'saveZohoSettings',
-			'client_id': client_id,
-			'client_secret': client_secret,
+			'client_id': jQuery("input[name='key']").val(),
+			'client_secret': jQuery("input[name='secret']").val(),
 			'domain': jQuery("#domainselect").val(),
 		},
 		success: function (data) {
 			if (data.success === true) {
 				if (data.domain === '.ca') {
-					window.location.href = "https://accounts.zohocloud" + data.domain + "/oauth/v2/auth?scope=" + scope + "&client_id=" + data.client_id + "&response_type=code&access_type=offline&prompt=consent&redirect_uri=" + data.callback;
+					window.location.href = "https://accounts.zohocloud" + data.domain + "/oauth/v2/auth?scope=ZohoCRM.users.ALL,ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.org.ALL&client_id=" + data.client_id + "&response_type=code&access_type=offline&redirect_uri=" + data.callback;
 				} else {
-					window.location.href = "https://accounts.zoho" + data.domain + "/oauth/v2/auth?scope=" + scope + "&client_id=" + data.client_id + "&response_type=code&access_type=offline&prompt=consent&redirect_uri=" + data.callback;
+					window.location.href = "https://accounts.zoho" + data.domain + "/oauth/v2/auth?scope=ZohoCRM.users.ALL,ZohoCRM.modules.ALL,ZohoCRM.settings.ALL,ZohoCRM.org.ALL&client_id=" + data.client_id + "&response_type=code&access_type=offline&redirect_uri=" + data.callback;
 				}
 
 			}

@@ -80,8 +80,6 @@ class SmackLBAdmin  extends SmackLBHelper{
 				$lb_admin->show_freshsales_crm_config();
 			} elseif($active_plugin == "wptigerpro") {
 				$lb_admin->show_vtiger_crm_config();
-			} elseif($active_plugin == "wpzohobiginpro") {
-				$lb_admin->show_zohobigin_crm_config();
 			} elseif($active_plugin == 'wpsalesforcepro')   {
 				$lb_admin->show_salesforce_crm_config();
 			} else {
@@ -201,10 +199,6 @@ class SmackLBAdmin  extends SmackLBHelper{
 
 	public function show_salesforce_crm_config() {
 		include('views/form-salesforcecrmconfig.php');
-	}
-
-	public function show_zohobigin_crm_config(){
-		include ('views/form-zohobigincrmconfig.php');
 	}
 
 	public function show_oppurtunities() {

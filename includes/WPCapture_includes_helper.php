@@ -764,13 +764,19 @@ class WPCapture_includes_helper_PRO {
 			{
 				include_once(SM_LB_PRO_DIR.'lib/SmackSalesForceApi.php');
 			}
-			$records = Getuser( $this->instanceurl, $this->accesstoken );
-			foreach($records['recentItems'] as $record) {
-				$user_details['user_name'][] = $record['Name'] ;
-				$Name = explode(" ",$record['Name']);
-				$user_details['first_name'][]= $Name[0];
-				$user_details['last_name'][] = $Name[1];
-				$user_details['id'][] = $record['Id'];
+			$instance_url = isset($wpsalesforcepro_settings['instance_url']) ? $wpsalesforcepro_settings['instance_url'] : '';
+			$access_token = isset($wpsalesforcepro_settings['access_token']) ? $wpsalesforcepro_settings['access_token'] : '';
+			if(function_exists('Getuser')) {
+				$records = Getuser( $instance_url, $access_token );
+				if( isset( $records['recentItems'] ) ) {
+					foreach($records['recentItems'] as $record) {
+						$user_details['user_name'][] = $record['Name'] ;
+						$Name = explode(" ",$record['Name']);
+						$user_details['first_name'][]= $Name[0];
+						$user_details['last_name'][] = $Name[1];
+						$user_details['id'][] = $record['Id'];
+					}
+				}
 			}
 			$crmusers = get_option( "crm_users" );
 			$crmusers['wpsalesforcepro'] = $user_details;
@@ -1083,7 +1089,9 @@ class WPCapture_includes_helper_PRO {
 		{
 			$old_url = getcwd();
 			global $plugin_dir_wp_tiger;
-			chdir($plugin_dir_wp_tiger);
+			if(!empty($plugin_dir_wp_tiger)){
+				chdir($plugin_dir_wp_tiger);
+			}
 			if(!class_exists("Vtiger_WSClient"))
 			{
 				include_once($plugin_dir_wp_tiger . "vtwsclib/Vtiger/WSClient.php");
@@ -1527,7 +1535,7 @@ class WPCapture_includes_helper_PRO {
 
 	public function migrateWpLeadsBuilderCrm()
 	{
-		global $crmdetails;
+		global $crmdetailsPRO;
 		$config_contact_shortcodes = get_option("smack_fields_shortcodes");
 		$IncludedFreePlugins = Array(
 			'wptigerfree' => "WP Tiger free",
@@ -1551,7 +1559,7 @@ class WPCapture_includes_helper_PRO {
 		if(is_array($smack_key_lead_post_field_settings))
 			foreach( $smack_key_lead_post_field_settings as $key => $field_settings )
 			{
-				$shortcode = $this->CreateNewFieldShortcode( $FreeProPluginMap[$key] , $crmdetails[$FreeProPluginMap[$key]]['modulename']["Leads"] );
+				$shortcode = $this->CreateNewFieldShortcode( $FreeProPluginMap[$key] , $crmdetailsPRO[$FreeProPluginMap[$key]]['modulename']["Leads"] );
 				$field_settings['formtype'] = "post";
 				$field_settings['crm'] = $FreeProPluginMap[$key];
 				$successfulAttemptsOption = get_option( "wp-{$key}-contact-post-form-attempts" );
@@ -1563,7 +1571,7 @@ class WPCapture_includes_helper_PRO {
 		if(is_array($smack_key_lead_widget_field_settings))
 			foreach( $smack_key_lead_widget_field_settings as $key => $field_settings )
 			{
-				$shortcode = $this->CreateNewFieldShortcode( $FreeProPluginMap[$key] , $crmdetails[$FreeProPluginMap[$key]]['modulename']["Leads"] );
+				$shortcode = $this->CreateNewFieldShortcode( $FreeProPluginMap[$key] , $crmdetailsPRO[$FreeProPluginMap[$key]]['modulename']["Leads"] );
 				$field_settings['formtype'] = "widget";
 				$field_settings['crm'] = $FreeProPluginMap[$key];
 				$successfulAttemptsOption = get_option( "wp-{$key}-contact-widget-form-attempts" );

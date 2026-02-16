@@ -119,7 +119,9 @@ class SM_WPLeadsBuilderForAnyCRMPro {
 			if( $ActivePlugin == "wpzohopluspro" ){
 				$ActivePlugin = "wpzohopro";
 			}
-			require_once("includes/{$ActivePlugin}Functions.php");
+			if (file_exists(plugin_dir_path(__FILE__) . "includes/{$ActivePlugin}Functions.php")) {
+				require_once("includes/{$ActivePlugin}Functions.php");
+			}
 		}
 
 		require_once('includes/WPCapture_includes_helper.php');

@@ -229,6 +229,10 @@ else
 					$new_user_fields = array();
 					$new_user_fields = $user_fields;
 					$new_user_fields1 = json_encode($new_user_fields);
+					$mapped_fields = get_option( "User{$active_plugin}{$module['module']}ModuleMapping" );
+					if ( ! is_array( $mapped_fields ) ) {
+						$mapped_fields = array();
+					}
 					foreach( $user_fields as $fieldvalue => $field_label )
 					{
 						?>
@@ -247,9 +251,9 @@ else
 							</div>
 						</div>
 						<?php
-						$mapped_fields = get_option( "User{$active_plugin}{$module['module']}ModuleMapping");
+						$mapped_value = isset( $mapped_fields[ $fieldvalue ] ) ? $mapped_fields[ $fieldvalue ] : '';
 						$load_script .= "<script>
-										document.getElementsByName('{$module['module']}_module_field[]')[{$i}].value = '{$mapped_fields[$fieldvalue]}';
+										document.getElementsByName('{$module['module']}_module_field[]')[{$i}].value = " . wp_json_encode( $mapped_value ) . ";
 										</script>";
 						$i++;
 					}

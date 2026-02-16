@@ -47,10 +47,6 @@ class SaveCRMConfig
 			$save_result = $this->freshsalesSettings($config);
 			return $save_result;
 			break;
-		case 'wpzohobiginproSettings':
-			$save_result = $this->zohobiginproSettings($config);
-			return $save_result;
-			break;
 		}
 	}
 
@@ -331,38 +327,5 @@ class SaveCRMConfig
 		$successresult = "Settings Saved";
 		$result['success'] = $successresult;
 		return $result;
-	}
-
-	public function zohobiginproSettings( $zohoSettArray )
-	{
-		$config = $result = [];
-		$zoho_config_array = $zohoSettArray['REQUEST'];
-		$fieldNames = array(
-			'key' => __('Client ID' , SM_LB_URL ),
-			'secret' => __('Client Secret' , SM_LB_URL ),
-			'domainselect' => __('Domain' , SM_LB_URL ),
-		);
-
-		foreach ($fieldNames as $field=>$value){
-			if(isset($zoho_config_array[$field]))
-			{
-				if($field == 'domainselect') {
-					$config['domain'] = $zoho_config_array[$field];
-				} else {
-					$config[$field] = $zoho_config_array[$field];
-				}
-			}
-		}
-		$WPCapture_includes_helper_Obj = new WPCapture_includes_helper_PRO();
-		$activateplugin = $WPCapture_includes_helper_Obj->ActivatedPlugin;
-		$exist_config = get_option( "wp_{$activateplugin}_settings" );
-		if( !empty( $exist_config ) )
-			$config = array_merge($exist_config, $config);
-		update_option("wp_{$activateplugin}_settings", $config);
-
-		$result['error'] = 0;
-		$successresult = "Settings Successfully Saved";
-		$result['success'] = $successresult;
-		return $result;
-	}
+	}	
 }

@@ -48,7 +48,7 @@ if( !class_exists( "SmackZohoApi" ) )
 			$body = json_decode($response, true);
 			return $body;
 		}
-		public function Zoho_CreateRecord($module = "Lead",$data_array,$extraParams) {
+		public function Zoho_CreateRecord( $module = "Lead", $data_array = array(), $extraParams = "" ) {
 			try{
 				
 				$apiUrl = $this->zohoapidomain."/crm/v7/$module";

@@ -368,7 +368,9 @@ class FieldOperations
 		}
 		$trim2 = rtrim($string2, ',');
 		$wps_enablefields = $enable_showfields[0]->shortcode_id;
-		$wpdb->query("update wp_smackleadbulider_form_field_manager set state = '1' where rel_id in ($trim2) and shortcode_id = '$wps_enablefields'");
+		$wpdb->query("update wp_smackleadbulider_form_field_manager set state = '0' where shortcode_id = '$wps_enablefields' and wp_field_mandatory != 1");
+		if( !empty($trim2) )
+			$wpdb->query("update wp_smackleadbulider_form_field_manager set state = '1' where rel_id in ($trim2) and shortcode_id = '$wps_enablefields'");
 	}
 
 	function disableFields( $selectedfields, $shortcode_name )
@@ -377,28 +379,6 @@ class FieldOperations
 		$string3 = "";	
 		$disable_showfields = $wpdb->get_results($wpdb->prepare("select ffm.form_field_sequence, ffm.rel_id, sm.shortcode_id, sm.module, sm.crm_type from wp_smackleadbulider_form_field_manager as ffm inner join wp_smackleadbulider_shortcode_manager as sm on ffm.shortcode_id = sm.shortcode_id where sm.shortcode_name = %s order by ffm.form_field_sequence", $shortcode_name)); // Modified by Fredrick
 
-		// Added by Fredrick
-		$module = $disable_showfields[0]->module;
-		$crm_type = $disable_showfields[0]->crm_type;
-		if($module == 'Leads') {
-			$shortcode_module = 'lead';
-		} else {
-			$shortcode_module = 'contact';
-		}
-		$option_name = 'smack_' . $crm_type . '_' . $shortcode_module . '_fields-tmp';
-		$crm_fields = get_option($option_name);
-		$madantory_fields = ''; //array();
-		$disable_crm_fields = $crm_fields['fields'];
-		$disable_crm_fields = array_combine(range(1, count($disable_crm_fields)), array_values($disable_crm_fields));
-		if(!empty($disable_crm_fields) && is_array($disable_crm_fields)){
-			foreach($disable_crm_fields as $key => $val) {
-				if($val['mandatory'] == 2)
-					$madantory_fields .= $key . ',';
-			}
-		}
-		$madantory_fields = substr($madantory_fields, 0, -1);
-		// ends here
-	
 		if( isset( $selectedfields ) ) {
 			foreach($selectedfields as $fields)
 			{	
@@ -408,7 +388,7 @@ class FieldOperations
 		$trim3 = rtrim($string3, ',');
 		$wps_disablefields = $disable_showfields[0]->shortcode_id;
 		$wpdb->query("update wp_smackleadbulider_form_field_manager set state = '0' where rel_id in ($trim3) and shortcode_id = '$wps_disablefields'");
-		$wpdb->query("update wp_smackleadbulider_form_field_manager set state = '1' where rel_id in ($madantory_fields) and shortcode_id = '$wps_disablefields'");
+		$wpdb->query("update wp_smackleadbulider_form_field_manager set state = '1' where shortcode_id = '$wps_disablefields' and wp_field_mandatory = 1");
 	}
 
 	function updateFieldsOrder( $field_order, $shortcode_name )

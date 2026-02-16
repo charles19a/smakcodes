@@ -466,46 +466,34 @@ else
 			<div class="col-md-12 text-center" style="display:flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
 				<div class="">
 					<?php
-					$lead_label = 'Create Lead Form';
-					$lead_module = 'Leads';
-					if($activatedplugin == 'wpzohobiginpro') {
-						$lead_label = 'Create Deal Form';
-						$lead_module = 'Leads';
-					}
 					if($result['leadsynced']){
 					?>
 					<input class="crm_form_button" type="submit"
-						value="<?php echo esc_attr__($lead_label , "wp-leads-builder-any-crm-pro" ); ?>"
-						onclick="create_form('createshortcode','<?php echo $lead_module; ?>','','')" id="generateleadsshortcode" />
+						value="<?php echo esc_attr__('Create Lead Form' , "wp-leads-builder-any-crm-pro" ); ?>"
+						onclick="create_form('createshortcode','Leads','','')" id="generateleadsshortcode" />
 					<?php
 					}else{
 					?>
 					<input class="crm_form_button" type="submit"
-						value="<?php echo esc_attr__($lead_label , "wp-leads-builder-any-crm-pro" ); ?>"
-						onclick="create_form('createshortcode','<?php echo $lead_module; ?>','','')" id="generateleadsshortcode" disabled />
+						value="<?php echo esc_attr__('Create Lead Form' , "wp-leads-builder-any-crm-pro" ); ?>"
+						onclick="create_form('createshortcode','Leads','','')" id="generateleadsshortcode" disabled />
 					<?php	
 					}
 					?>
 				</div>
 				<div class="">
 					<?php
-					$contact_label = 'Create Contact Form';
-					$contact_module = 'Contacts';
-					if($activatedplugin == 'wpzohobiginpro') {
-						$contact_label = 'Create Contact Form';
-						$contact_module = 'Contacts';
-					}
 					if($result['contactsynced']){
 					?>
 					<input class="crm_form_button" type="submit"
-						value="<?php echo esc_attr__($contact_label , "wp-leads-builder-any-crm-pro" ); ?>"
-						onclick="create_form('createshortcode','<?php echo $contact_module; ?>','','')" id="generatecontactsshortcode" />
+						value="<?php echo esc_attr__('Create Contact Form' , "wp-leads-builder-any-crm-pro" ); ?>"
+						onclick="create_form('createshortcode','Contacts','','')" id="generatecontactsshortcode" />
 					<?php
 					}else{
 					?>
 					<input class="crm_form_button" type="submit"
-						value="<?php echo esc_attr__($contact_label , "wp-leads-builder-any-crm-pro" ); ?>"
-						onclick="create_form('createshortcode','<?php echo $contact_module; ?>','','')" id="generatecontactsshortcode"
+						value="<?php echo esc_attr__('Create Contact Form' , "wp-leads-builder-any-crm-pro" ); ?>"
+						onclick="create_form('createshortcode','Contacts','','')" id="generatecontactsshortcode"
 						disabled />
 					<?php	
 					}

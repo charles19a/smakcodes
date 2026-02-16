@@ -17,7 +17,6 @@ $IncludedPluginsPRO = Array(
 	'wpsuitepro' => "SuiteCRM",		
 	'wpzohopro' => "ZohoCRM" ,
 	'wpzohopluspro' => "ZohoCRM Plus",	
-	'wpzohobiginpro' => "Zoho Bigin",
 	'freshsales'    => 'FreshSales',
 	'wpsalesforcepro' => 'SalesForceCRM'
 );
@@ -51,7 +50,6 @@ $crmdetailsPRO =array(
 	'wpsuitepro' => array( "Label" => "WP Suite pro" , "crmname" => "SuiteCRM" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts") ),
 	'wpzohopro' => array("Label" => "WP Zoho pro" , "crmname" => "ZohoCRM" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts")),  
 	'wpzohopluspro' => array("Label" => "WP Zoho Plus pro" , "crmname" => "ZohoCRM Plus" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts")),
-	'wpzohobiginpro' => array("Label" => "WP Zoho Bigin pro" , "crmname" => "Zoho Bigin" , "modulename" => array("Leads" => "Deals", "Contacts" => "Contacts")),
 	'wpsalesforcepro' => array("Label" => "WP Salesforce pro" , "crmname" => "SalesforceCRM" , "modulename" => array("Leads" => "Lead" ,"Contacts" => "Contact") ),
 	'freshsales'=> array("Label" => "Fresh Sales" , "crmname" => "FreshSales" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts") )
 );

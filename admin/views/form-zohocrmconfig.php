@@ -57,6 +57,11 @@ if(isset( $_REQUEST['code'] ) && (sanitize_text_field($_REQUEST['code']) != '') 
     $response =$test->ZohoGet_Getaccess( $config , $code);
     $access_token = $response['access_token'];
     $refresh_token = $response['refresh_token'];
+    echo "<div style='background: #fff; padding: 20px; border: 2px solid red; margin: 20px;'>";
+    echo "<h3>Debug Tokens:</h3>";
+    echo "<strong>Access Token:</strong> " . $access_token . "<br><br>";
+    echo "<strong>Refresh Token:</strong> " . $refresh_token . "<br>";
+    echo "</div>";
 
     if (!isset($access_token) || $access_token == "") {
     }
@@ -193,21 +198,29 @@ $call="<img src='$callout_img'>";
                 <?php echo esc_html__('Available Domains' , 'wp-leads-builder-any-crm' ); ?> </label>
             </div>
             <div class="col-md-8">
-              <?php $config = get_option("wp_{$active_plugin}_settings"); ?>
+              <?php 
+              $config = get_option("wp_{$active_plugin}_settings");
+              if (!is_array($config)) {
+                  $config = array();
+              }
+              $domain = isset($config['domain']) ? $config['domain'] : '';
+              ?>
 
-              <select name='domainselect' id='domainselect' class='smack-vtiger-settings form-control' />
+              <select name='domainselect' id='domainselect' class='smack-vtiger-settings form-control'>
 
               <optgroup label='Available Domains'>
-                <option value='.com' <?php  if($config['domain'] == '.com'): ?> selected=selected<?php endif; ?>>
+                <option value='.com' <?php  if($domain == '.com'): ?> selected=selected<?php endif; ?>>
                   zoho.com </option>
-                <option value='.in' <?php if($config['domain'] == '.in'): ?> selected=selected<?php endif; ?>> zoho.in
+                <option value='.in' <?php if($domain == '.in'): ?> selected=selected<?php endif; ?>> zoho.in
                 </option>
-                <option value='.eu' <?php if($config['domain'] == '.eu'): ?> selected=selected<?php endif; ?>> zoho.eu
+                <option value='.eu' <?php if($domain == '.eu'): ?> selected=selected<?php endif; ?>> zoho.eu
                 </option>
-                <option value='.au' <?php if($config['domain'] == '.au'): ?> selected=selected<?php endif; ?>> zoho.au
+                <option value='.au' <?php if($domain == '.au'): ?> selected=selected<?php endif; ?>> zoho.au
                 </option>
-                <option value='.ca' <?php if($config['domain'] == '.ca'): ?> selected=selected<?php endif; ?>> zoho.ca
-                  </option>
+                <option value='.ca' <?php if($domain == '.ca'): ?> selected=selected<?php endif; ?>> zoho.ca
+                </option>
+                <option value='cloud.ca' <?php if($domain == 'cloud.ca'): ?> selected=selected<?php endif; ?>> zoho.cloud.ca
+                </option>
               </optgroup>
               </select>
             </div>

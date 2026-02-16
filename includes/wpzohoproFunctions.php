@@ -312,7 +312,15 @@ class PROFunctions{
 		$zohoapi=new SmackZohoApi();
 		$data=[];
 		$config=[];
-		$module_fields['Owner']['id']=$module_fields['SMOWNERID'];
+		$owner_id = '';
+		if ( isset( $module_fields['SMOWNERID'] ) ) {
+			$owner_id = $module_fields['SMOWNERID'];
+		} elseif ( isset( $module_fields['Lead_Owner'] ) ) {
+			$owner_id = $module_fields['Lead_Owner'];
+		}
+		if ( $owner_id !== '' && $owner_id !== null ) {
+			$module_fields['Owner'] = array( 'id' => (string) $owner_id );
+		}
 		$fields_to_skip = ['Digital_Interaction_s', 'Solution'];
 		foreach($module_fields as $fieldname => $fieldvalue){
 			if(!in_array($fieldname, $fields_to_skip)){
@@ -329,40 +337,70 @@ class PROFunctions{
 		}
 
 		$attachments = isset($module_fields['attachments']) ? $module_fields['attachments'] : '';
+		unset($module_fields['attachments']);
+		unset($module_fields['SMOWNERID']);
+		unset($module_fields['Lead_Owner']);
 		$body_json = array();
 		$body_json["data"] = array();
 
 		array_push($body_json["data"], $module_fields);
 
 		$record = $zohoapi->Zoho_CreateRecord( $module,$body_json,$attachments);
-		if(isset($record['code'])){
-			if($record['code']=='INVALID_TOKEN' || $record['code']=='AUTHENTICATION_FAILURE'){
-				$get_access_token=$zohoapi->refresh_token();
 
-
-				if(isset($get_access_token['error'])){
-					if($get_access_token['error'] == 'access_denied'){
-						$data['result'] = "failure";
-						$data['failure'] = 1;
-						$data['reason'] = "Access Denied to get the refresh token";
-						return $data;
-					}
-				}
-
-				$exist_config = get_option("wp_{$this->activated_plugin}_settings");
-				$config['access_token']=$get_access_token['access_token'];
-				$config['api_domain']=$get_access_token['api_domain'];
-				$config['key']=$exist_config['key'];
-				$config['secret']=$exist_config['secret'];
-				$config['callback']=$exist_config['callback'];
-				$config['refresh_token']=$exist_config['refresh_token'];
-				$config['domain']=$exist_config['domain'];
-				update_option("wp_{$this->activated_plugin}_settings",$config);
-				$this->createRecord($module, $module_fields);
+		$record_code = '';
+		if ( is_array( $record ) ) {
+			if ( isset( $record['code'] ) ) {
+				$record_code = $record['code'];
+			} elseif ( isset( $record['data'][0]['code'] ) ) {
+				$record_code = $record['data'][0]['code'];
 			}
 		}
 
-		elseif( $record['data'][0]['code']=='SUCCESS')
+		if ( $record_code == 'INVALID_TOKEN' || $record_code == 'AUTHENTICATION_FAILURE' ) {
+			$get_access_token = $zohoapi->refresh_token();
+
+			if ( ! is_array( $get_access_token ) ) {
+				$data['result'] = "failure";
+				$data['failure'] = 1;
+				$data['reason'] = "Failed to refresh access token";
+				return $data;
+			}
+
+			if ( isset( $get_access_token['error'] ) ) {
+				$data['result'] = "failure";
+				$data['failure'] = 1;
+				$data['reason'] = "Zoho token refresh failed: " . $get_access_token['error'];
+				return $data;
+			}
+
+			if ( empty( $get_access_token['access_token'] ) ) {
+				$data['result'] = "failure";
+				$data['failure'] = 1;
+				$data['reason'] = "Zoho token refresh failed: missing access token";
+				return $data;
+			}
+
+			$exist_config = get_option( "wp_{$this->activated_plugin}_settings" );
+			if ( ! is_array( $exist_config ) ) {
+				$exist_config = array();
+			}
+
+			$config = $exist_config;
+			$config['access_token'] = $get_access_token['access_token'];
+			if ( ! empty( $get_access_token['api_domain'] ) ) {
+				$config['api_domain'] = $get_access_token['api_domain'];
+			}
+			update_option( "wp_{$this->activated_plugin}_settings", $config );
+
+			$zohoapi->access_token = $config['access_token'];
+			if ( ! empty( $config['api_domain'] ) ) {
+				$zohoapi->zohoapidomain = $config['api_domain'];
+			}
+
+			$record = $zohoapi->Zoho_CreateRecord( $module, $body_json, $attachments );
+		}
+
+		if ( is_array( $record ) && isset( $record['data'][0]['code'] ) && $record['data'][0]['code'] == 'SUCCESS' )
 		{
 			$data['result'] = "success";
 			$data['failure'] = 0;
@@ -371,7 +409,13 @@ class PROFunctions{
 		{
 			$data['result'] = "failure";
 			$data['failure'] = 1;
-			$data['reason'] = "failed adding entry";
+			if ( is_array( $record ) && isset( $record['data'][0]['message'] ) ) {
+				$data['reason'] = $record['data'][0]['message'];
+			} elseif ( is_array( $record ) && isset( $record['message'] ) ) {
+				$data['reason'] = $record['message'];
+			} else {
+				$data['reason'] = "failed adding entry";
+			}
 		}
 		return $data;
 	}
@@ -689,7 +733,6 @@ class PROFunctions{
 
 	public function updateRecord( $module , $module_fields , $ids_present )
 	{
-		$client = $this->login();
 		$data = [];
 		$config = [];
 		$fields_to_skip = ['Digital_Interaction_s', 'Solution'];
@@ -708,41 +751,79 @@ class PROFunctions{
 		}
 
 
-		$module_fields['Owner']['id']=$module_fields['SMOWNERID'];
+		$owner_id = '';
+		if ( isset( $module_fields['SMOWNERID'] ) ) {
+			$owner_id = $module_fields['SMOWNERID'];
+		} elseif ( isset( $module_fields['Lead_Owner'] ) ) {
+			$owner_id = $module_fields['Lead_Owner'];
+		}
+		if ( $owner_id !== '' && $owner_id !== null ) {
+			$module_fields['Owner'] = array( 'id' => (string) $owner_id );
+		}
 
-		$attachments = $module_fields['attachments'];
+		$attachments = isset($module_fields['attachments']) ? $module_fields['attachments'] : '';
+		unset($module_fields['attachments']);
+		unset($module_fields['SMOWNERID']);
+		unset($module_fields['Lead_Owner']);
 
-		$zohoapi=new SmackZohoApi();
+		$zohoapi = new SmackZohoApi();
 
-		$record = $zohoapi->Zoho_UpdateRecord( $module,$module_fields,$ids_present);
+		$record = $zohoapi->Zoho_UpdateRecord( $module, $module_fields, $ids_present );
 
-		if($record['code']=='INVALID_TOKEN' || $record['code']=='AUTHENTICATION_FAILURE'){
+		$record_code = '';
+		if ( is_array( $record ) ) {
+			if ( isset( $record['code'] ) ) {
+				$record_code = $record['code'];
+			} elseif ( isset( $record['data'][0]['code'] ) ) {
+				$record_code = $record['data'][0]['code'];
+			}
+		}
 
-			$get_access_token=$client->refresh_token();
+		if ( $record_code == 'INVALID_TOKEN' || $record_code == 'AUTHENTICATION_FAILURE' ) {
+			$get_access_token = $zohoapi->refresh_token();
 
-			// Mari added
-			if(isset($get_access_token['error'])){
-				if($get_access_token['error'] == 'access_denied'){
-					$data['result'] = "failure";
-					$data['failure'] = 1;
-					$data['reason'] = "Access Denied to get the refresh token";
-					return $data;
-				}
+			if ( ! is_array( $get_access_token ) ) {
+				$data['result'] = "failure";
+				$data['failure'] = 1;
+				$data['reason'] = "Failed to refresh access token";
+				return $data;
 			}
 
-			$exist_config = get_option("wp_{$this->activated_plugin}_settings");
-			$config['access_token']=$get_access_token['access_token'];
-			$config['api_domain']=$get_access_token['api_domain'];
-			$config['key']=$exist_config['key'];
-			$config['secret']=$exist_config['secret'];
-			$config['callback']=$exist_config['callback'];
-			$config['refresh_token']=$exist_config['refresh_token'];
-			$config['domain']=$exist_config['domain'];
-			update_option("wp_{$this->activated_plugin}_settings",$config);
-			// Mari changed this createrecord to updaterecord
-			$this->updateRecord($module, $module_fields, $ids_present);
-		}          
-		elseif( $record['data'][0]['code']=='SUCCESS')
+			if ( isset( $get_access_token['error'] ) ) {
+				$data['result'] = "failure";
+				$data['failure'] = 1;
+				$data['reason'] = "Zoho token refresh failed: " . $get_access_token['error'];
+				return $data;
+			}
+
+			if ( empty( $get_access_token['access_token'] ) ) {
+				$data['result'] = "failure";
+				$data['failure'] = 1;
+				$data['reason'] = "Zoho token refresh failed: missing access token";
+				return $data;
+			}
+
+			$exist_config = get_option( "wp_{$this->activated_plugin}_settings" );
+			if ( ! is_array( $exist_config ) ) {
+				$exist_config = array();
+			}
+
+			$config = $exist_config;
+			$config['access_token'] = $get_access_token['access_token'];
+			if ( ! empty( $get_access_token['api_domain'] ) ) {
+				$config['api_domain'] = $get_access_token['api_domain'];
+			}
+			update_option( "wp_{$this->activated_plugin}_settings", $config );
+
+			$zohoapi->access_token = $config['access_token'];
+			if ( ! empty( $config['api_domain'] ) ) {
+				$zohoapi->zohoapidomain = $config['api_domain'];
+			}
+
+			$record = $zohoapi->Zoho_UpdateRecord( $module, $module_fields, $ids_present );
+		}
+
+		if ( is_array( $record ) && isset( $record['data'][0]['code'] ) && $record['data'][0]['code'] == 'SUCCESS' )
 		{
 			$data['result'] = "success";
 			$data['failure'] = 0;
@@ -751,7 +832,13 @@ class PROFunctions{
 		{
 			$data['result'] = "failure";
 			$data['failure'] = 1;
-			$data['reason'] = "failed adding entry";
+			if ( is_array( $record ) && isset( $record['data'][0]['message'] ) ) {
+				$data['reason'] = $record['data'][0]['message'];
+			} elseif ( is_array( $record ) && isset( $record['message'] ) ) {
+				$data['reason'] = $record['message'];
+			} else {
+				$data['reason'] = "failed adding entry";
+			}
 		}
 		return $data;
 	}

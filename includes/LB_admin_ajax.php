@@ -496,7 +496,6 @@ class SmackLBAdminAjax {
 		$current_config['callback'] = admin_url().'admin.php?page=lb-crmconfig';
 		$current_config['domain'] = $_POST['domain'];
 		// $current_config['domain'] = 'cloud.ca';
-		
 		if(!empty($exist_config))
 			$config = array_merge($exist_config, $current_config);
 		else

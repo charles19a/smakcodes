@@ -907,17 +907,6 @@ class CapturingProcessClassPRO
 			}
 			break;
 
-		case 'wpzohobiginpro':
-			if( $wp_assigneduser_config['usersync_assign_leads'] != "Round Robin" )
-			{
-				$assignedto_user['SMOWNERID'] = $wp_assigneduser_config['usersync_assign_leads'];
-			}
-			else
-			{
-				$assignedto_user['SMOWNERID'] = $assignedto_old;
-			}
-			break;
-
 		case 'wpsugarpro':
 			if( $wp_assigneduser_config['usersync_assign_leads'] != "Round Robin" )
 			{
@@ -1295,7 +1284,7 @@ class CapturingProcessClassPRO
 		unset($module_fields['formnumber']);
 		unset($module_fields['IsUnreadByOwner']);
 
-		if($activatedplugin == 'wpzohopro' || $activatedplugin == 'wpzohobiginpro'){
+		if($activatedplugin == 'wpzohopro'){
 			$module_fields['SMOWNERID'] = $module_fields['Lead_Owner'];
 		}
 
@@ -1731,16 +1720,6 @@ class CapturingProcessClassPRO
 				$assignedto_user['owner_id'] = $assignedto_old;
 			}
 			break;
-		case 'wpzohobiginpro':
-			if( $ecom_RR_assignedto != 'Round Robin' )
-			{
-				$assignedto_user['SMOWNERID'] = $wp_assigneduser_config['ecom_assignedto'];
-			}
-			else
-			{
-				$assignedto_user['SMOWNERID'] = $assignedto_old;
-			}
-			break;
 
 		}
 		return $assignedto_user;
@@ -1833,16 +1812,6 @@ class CapturingProcessClassPRO
 			else
 			{
 				$assignedto_user['owner_id'] = $assignedto_old;
-			}
-			break;
-		case 'wpzohobiginpro':
-			if( $tp_assignedto != 'Round Robin' )
-			{
-				$assignedto_user['SMOWNERID'] = $wp_assigneduser_config['thirdparty_assignedto'];
-			}
-			else
-			{
-				$assignedto_user['SMOWNERID'] = $assignedto_old;
 			}
 			break;
 
