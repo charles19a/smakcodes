@@ -1,0 +1,47 @@
+{
+  "Plugin Name": "WP Leads Builder For Any CRM Pro",
+  "version": [
+    "3.0",
+    "2.0.5",
+    "2.0.4",
+    "2.0.3",
+    "2.0.2",
+    "2.0"
+  ],
+  "changelogs": {
+    "2.0": {
+      "0": "Removed: SkinnyMVC Framework",
+      "1": "Implemented: New user interface",
+      "2": "Added: Salesforce CRM support",
+      "3": "Added: Customer Insights",
+      "4": "Added: Ultimate member plugin support"
+    },
+    "2.0.2": {
+      "0": "Added: CRM Support for zoho"
+    },
+    "2.0.3": {
+      "0": "Added: Support for WP Forms",
+      "1": "Added: Support for Caldera forms",
+      "2": "Fixed: SOAP lib error",
+      "3": "Updated: Joforce CRM as default"
+    },
+    "2.0.4": {
+      "0": "Added: Compatibility for WordPress 5.7.2",
+      "1": "Fixed: Sugarcrm Configuration issue for .eu domain",
+      "2": "Fixed: Zohocrm assignee issue"
+    },
+    "2.0.5": {
+      "0": "Checked: Compatibility for WordPress 5.9.3",
+      "1": "Fixed: SOAP API Conflict with SuiteCRM"
+    },
+    "3.0": {
+      "0": "Checked: Compatibility for WordPress 6.3.2",
+      "1": "Updated: Thirdparty CSS & JS libraries",
+      "2":"Improved: User Interface",
+      "3":"Updated: Latest Zoho CRM API",
+      "4":"Updated: Salesforce API",
+      "5":"Checked: All CRM API’s to the latest version & Compatibility"
+
+    }
+  }
+}

@@ -1,0 +1,121 @@
+
+Warning: Module "mysqli" is already loaded in Unknown on line 0
+{
+    "fields": [
+        {
+            "wp_mandatory": 0,
+            "type": {
+                "name": "currency"
+            },
+            "name": "Amount",
+            "fieldname": "Amount",
+            "label": "Amount",
+            "display_label": "Amount",
+            "publish": 1,
+            "order": 0
+        },
+        {
+            "wp_mandatory": 0,
+            "type": {
+                "name": "string"
+            },
+            "name": "Closing_Date",
+            "fieldname": "Closing_Date",
+            "label": "Closing Date",
+            "display_label": "Closing Date",
+            "publish": 1,
+            "order": 1
+        },
+        {
+            "wp_mandatory": 0,
+            "type": {
+                "name": "string"
+            },
+            "name": "Account_Name",
+            "fieldname": "Account_Name",
+            "label": "Company Name",
+            "display_label": "Company Name",
+            "publish": 1,
+            "order": 2
+        },
+        {
+            "wp_mandatory": 1,
+            "mandatory": 2,
+            "type": {
+                "name": "picklist",
+                "picklistValues": [
+                    {
+                        "display_value": "Qualification",
+                        "actual_value": "Qualification",
+                        "label": "Qualification",
+                        "value": "Qualification"
+                    },
+                    {
+                        "display_value": "Needs Analysis",
+                        "actual_value": "Needs Analysis",
+                        "label": "Needs Analysis",
+                        "value": "Needs Analysis"
+                    },
+                    {
+                        "display_value": "Proposal\/Price Quote",
+                        "actual_value": "Proposal\/Price Quote",
+                        "label": "Proposal\/Price Quote",
+                        "value": "Proposal\/Price Quote"
+                    },
+                    {
+                        "display_value": "Negotiation\/Review",
+                        "actual_value": "Negotiation\/Review",
+                        "label": "Negotiation\/Review",
+                        "value": "Negotiation\/Review"
+                    },
+                    {
+                        "display_value": "Closed Won",
+                        "actual_value": "Closed Won",
+                        "label": "Closed Won",
+                        "value": "Closed Won"
+                    },
+                    {
+                        "display_value": "Closed Lost",
+                        "actual_value": "Closed Lost",
+                        "label": "Closed Lost",
+                        "value": "Closed Lost"
+                    }
+                ]
+            },
+            "name": "Stage",
+            "fieldname": "Stage",
+            "label": "Stage",
+            "display_label": "Stage",
+            "publish": 1,
+            "order": 3
+        },
+        {
+            "wp_mandatory": 0,
+            "type": {
+                "name": "string"
+            },
+            "name": "Contact_Name",
+            "fieldname": "Contact_Name",
+            "label": "Contact Name",
+            "display_label": "Contact Name",
+            "publish": 1,
+            "order": 4
+        },
+        {
+            "wp_mandatory": 0,
+            "type": {
+                "name": "text"
+            },
+            "name": "Description",
+            "fieldname": "Description",
+            "label": "Description",
+            "display_label": "Description",
+            "publish": 1,
+            "order": 5
+        }
+    ],
+    "check_duplicate": 0,
+    "isWidget": 0,
+    "assignedto": "1176663000000436001",
+    "module": "Deals"
+}

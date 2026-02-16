@@ -1,0 +1,60 @@
+<?php
+
+/******************************************************************************************
+ * Copyright (C) Smackcoders 2016 - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * You can contact Smackcoders at email address info@smackcoders.com.
+ *******************************************************************************************/
+if ( ! defined( 'ABSPATH' ) )
+	exit; // Exit if accessed directly
+
+global $IncludedPluginsPRO , $DefaultActivePluginPRO , $crmdetailsPRO , $ThirdPartyPlugins , $custom_plugins;
+$IncludedPluginsPRO = Array(
+	'joforce' => 'JoForceCRM',
+	'wptigerpro' =>  "VtigerCRM",		
+	'wpsugarpro'  => "SugarCRM" ,
+	'wpsuitepro' => "SuiteCRM",		
+	'wpzohopro' => "ZohoCRM" ,
+	'wpzohopluspro' => "ZohoCRM Plus",	
+	'wpzohobiginpro' => "Zoho Bigin",
+	'freshsales'    => 'FreshSales',
+	'wpsalesforcepro' => 'SalesForceCRM'
+);
+$ThirdPartyPlugins = array('none' => "None",
+	'ninjaform' => "Ninja Forms",
+	'contactform' => "Contact Form",
+	'gravityform' => "Gravity Form" ,
+	'wpform' => "WP Forms",
+	'wpformpro' => "WP FORMS PRO",
+	'elementorform' => "Elementor Forms"
+);
+
+$WpMappingModule = array(
+	'Leads' => 'Leads',
+	'Contacts' => 'Contacts'
+
+);
+
+$custom_plugins = array('none' => "None",
+	'wp-members' => "Wp-members",
+	'acf' => "ACF" ,
+	'acfpro' => "ACF Pro" ,	
+	'member-press' => "MemberPress" ,
+	'ultimate-member'=> "UltimateMember"
+); 
+
+$crmdetailsPRO =array( 
+	'joforce'=> array("Label" => "JoForce" , "crmname" => "Joforce" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts") ),
+	'wptigerpro'=> array("Label" => "WP Tiger pro" , "crmname" => "VtigerCRM" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts") ),
+	'wpsugarpro' => array( "Label" => "WP Sugar pro" , "crmname" => "SugarCRM" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts") ),
+	'wpsuitepro' => array( "Label" => "WP Suite pro" , "crmname" => "SuiteCRM" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts") ),
+	'wpzohopro' => array("Label" => "WP Zoho pro" , "crmname" => "ZohoCRM" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts")),  
+	'wpzohopluspro' => array("Label" => "WP Zoho Plus pro" , "crmname" => "ZohoCRM Plus" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts")),
+	'wpzohobiginpro' => array("Label" => "WP Zoho Bigin pro" , "crmname" => "Zoho Bigin" , "modulename" => array("Leads" => "Deals", "Contacts" => "Contacts")),
+	'wpsalesforcepro' => array("Label" => "WP Salesforce pro" , "crmname" => "SalesforceCRM" , "modulename" => array("Leads" => "Lead" ,"Contacts" => "Contact") ),
+	'freshsales'=> array("Label" => "Fresh Sales" , "crmname" => "FreshSales" , "modulename" => array("Leads" => "Leads" ,"Contacts" => "Contacts") )
+);
+
+$DefaultActivePluginPRO = "joforce";
+

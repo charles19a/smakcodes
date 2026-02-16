@@ -1,0 +1,21 @@
+{
+  "Plugin Name": "WP Leads Builder For Any CRM Pro",
+  "version": [
+    "2.0"
+  ],
+  "changelogs": {
+    "2.0": {
+      "0": "Removed: SkinnyMVC Framework",
+      "1": "Implemented: New user interface",
+      "2": "Added: Salesforce CRM support",
+      "3": "Added: Customer Insights",
+      "4": "Added: Ultimate member plugin support"
+    },
+    "2.0.3": {
+      "0": "Added: WP Forms Support",
+      "1": "Added: Caldera Forms Support",
+      "2": "Fixed: SOAP lib whitespace error",
+      "3": "Updated: Joforce CRM as default"
+    }
+  }
+}

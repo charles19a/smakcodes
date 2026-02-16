@@ -1,0 +1,822 @@
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 580000
+                    [Closing_Date] => 
+                    [Account_Name] => 
+                    [Stage] => Proposal/Price Quote
+                    [Contact_Name] => sesd
+                    [Description] => mkmo
+                    [submitcontactform] => submitcontactform1
+                    [Lead_Owner] => 1176663000000436001
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => INVALID_DATA
+                    [details] => Array
+                        (
+                            [expected_data_type] => bigint
+                            [api_name] => Contact_Name
+                            [json_path] => $.data[0].Contact_Name
+                        )
+
+                    [message] => invalid data
+                    [status] => error
+                )
+
+        )
+
+)
+
+
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 580000
+                    [Closing_Date] => 16/03/2026
+                    [Account_Name] => smack
+                    [Stage] => Negotiation/Review
+                    [Contact_Name] => sesd
+                    [Description] => mlkdnjkc
+                    [submitcontactform] => submitcontactform1
+                    [Lead_Owner] => 1176663000000436001
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => INVALID_DATA
+                    [details] => Array
+                        (
+                            [expected_data_type] => date
+                            [api_name] => Closing_Date
+                            [json_path] => $.data[0].Closing_Date
+                        )
+
+                    [message] => invalid data
+                    [status] => error
+                )
+
+        )
+
+)
+
+
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 520025
+                    [Closing_Date] => 2026-03-16
+                    [Stage] => Qualification
+                    [Description] => 
+                    [submitcontactform] => submitcontactform1
+                    [Lead_Owner] => 1176663000000436001
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Standard
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => MAPPING_MISMATCH
+                    [details] => Array
+                        (
+                            [mapped_field] => Layout
+                            [api_name] => Pipeline
+                            [json_path] => $.data[0].Pipeline
+                        )
+
+                    [message] => Layout doesn't contain the Pipeline
+                    [status] => error
+                )
+
+        )
+
+)
+
+
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 580000
+                    [Closing_Date] => 
+                    [Stage] => Needs Analysis
+                    [Description] => 
+                    [submitcontactform] => submitcontactform1
+                    [Lead_Owner] => 1176663000000436001
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => MANDATORY_NOT_FOUND
+                    [details] => Array
+                        (
+                            [api_name] => Contact_Name
+                            [json_path] => $.data[0].Contact_Name
+                        )
+
+                    [message] => required field not found
+                    [status] => error
+                )
+
+        )
+
+)
+
+
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 520025
+                    [Closing_Date] => 
+                    [Stage] => Negotiation/Review
+                    [Description] => 
+                    [submitcontactform] => submitcontactform1
+                    [Lead_Owner] => 1176663000000436001
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => MANDATORY_NOT_FOUND
+                    [details] => Array
+                        (
+                            [api_name] => Contact_Name
+                            [json_path] => $.data[0].Contact_Name
+                        )
+
+                    [message] => required field not found
+                    [status] => error
+                )
+
+        )
+
+)
+
+
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 
+                    [Closing_Date] => 
+                    [Stage] => Proposal/Price Quote
+                    [Description] => 
+                    [submitcontactform] => submitcontactform1
+                    [Lead_Owner] => 1176663000000436001
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => MANDATORY_NOT_FOUND
+                    [details] => Array
+                        (
+                            [api_name] => Contact_Name
+                            [json_path] => $.data[0].Contact_Name
+                        )
+
+                    [message] => required field not found
+                    [status] => error
+                )
+
+        )
+
+)
+
+
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 580000
+                    [Closing_Date] => 
+                    [Stage] => Needs Analysis
+                    [Description] => the dollar
+                    [submitcontactform] => submitcontactform1
+                    [Lead_Owner] => 1176663000000436001
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => MANDATORY_NOT_FOUND
+                    [details] => Array
+                        (
+                            [api_name] => Contact_Name
+                            [json_path] => $.data[0].Contact_Name
+                        )
+
+                    [message] => required field not found
+                    [status] => error
+                )
+
+        )
+
+)
+
+
+ENTERING createRecord for Leads
+FALLBACK CONTACT: 1176663000000446032
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 580000
+                    [Closing_Date] => 2026-03-14
+                    [Stage] => Needs Analysis
+                    [Description] => the dollar
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                    [Contact_Name] => 1176663000000446032
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => SUCCESS
+                    [details] => Array
+                        (
+                            [Modified_Time] => 2026-02-12T18:18:45+05:30
+                            [Modified_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                            [Created_Time] => 2026-02-12T18:18:45+05:30
+                            [id] => 1176663000000439040
+                            [Created_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                        )
+
+                    [message] => record added
+                    [status] => success
+                )
+
+        )
+
+)
+
+
+ENTERING createRecord for Leads
+FALLBACK CONTACT: 1176663000000446032
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 580000
+                    [Closing_Date] => 2026-03-14
+                    [Stage] => Negotiation/Review
+                    [Description] => 
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                    [Contact_Name] => 1176663000000446032
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => SUCCESS
+                    [details] => Array
+                        (
+                            [Modified_Time] => 2026-02-12T18:19:09+05:30
+                            [Modified_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                            [Created_Time] => 2026-02-12T18:19:09+05:30
+                            [id] => 1176663000000439059
+                            [Created_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                        )
+
+                    [message] => record added
+                    [status] => success
+                )
+
+        )
+
+)
+
+
+ENTERING createRecord for Leads
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 580000
+                    [Closing_Date] => 2026-03-16
+                    [Stage] => Negotiation/Review
+                    [Description] => deals amount
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [code] => INVALID_TOKEN
+    [details] => Array
+        (
+        )
+
+    [message] => invalid oauth token
+    [status] => error
+)
+
+
+ENTERING createRecord for Deals
+FALLBACK CONTACT: 1176663000000446032
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 580000
+                    [Closing_Date] => 2026-03-16
+                    [Stage] => Negotiation/Review
+                    [Description] => deals amount
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                    [Contact_Name] => 1176663000000446032
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => SUCCESS
+                    [details] => Array
+                        (
+                            [Modified_Time] => 2026-02-16T11:04:59+05:30
+                            [Modified_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                            [Created_Time] => 2026-02-16T11:04:59+05:30
+                            [id] => 1176663000000439081
+                            [Created_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                        )
+
+                    [message] => record added
+                    [status] => success
+                )
+
+        )
+
+)
+
+
+ENTERING createRecord for Leads
+FALLBACK CONTACT: 1176663000000446032
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 720000
+                    [Closing_Date] => 2026-03-16
+                    [Stage] => Needs Analysis
+                    [Description] => deals amount
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                    [Contact_Name] => 1176663000000446032
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => SUCCESS
+                    [details] => Array
+                        (
+                            [Modified_Time] => 2026-02-16T11:06:20+05:30
+                            [Modified_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                            [Created_Time] => 2026-02-16T11:06:20+05:30
+                            [id] => 1176663000000446076
+                            [Created_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                        )
+
+                    [message] => record added
+                    [status] => success
+                )
+
+        )
+
+)
+
+
+ENTERING createRecord for Leads
+FALLBACK CONTACT: 1176663000000446032
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 580000
+                    [Closing_Date] => 2026-03-16
+                    [Stage] => Negotiation/Review
+                    [Description] => deals amount
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                    [Contact_Name] => 1176663000000446032
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => SUCCESS
+                    [details] => Array
+                        (
+                            [Modified_Time] => 2026-02-16T11:07:18+05:30
+                            [Modified_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                            [Created_Time] => 2026-02-16T11:07:18+05:30
+                            [id] => 1176663000000439100
+                            [Created_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                        )
+
+                    [message] => record added
+                    [status] => success
+                )
+
+        )
+
+)
+
+
+ENTERING createRecord for Leads
+FALLBACK CONTACT: 1176663000000446032
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 356225
+                    [Closing_Date] => 2026-03-15
+                    [Stage] => Closed Won
+                    [Description] => deal won
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                    [Contact_Name] => 1176663000000446032
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => SUCCESS
+                    [details] => Array
+                        (
+                            [Modified_Time] => 2026-02-16T11:11:32+05:30
+                            [Modified_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                            [Created_Time] => 2026-02-16T11:11:32+05:30
+                            [id] => 1176663000000446095
+                            [Created_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                        )
+
+                    [message] => record added
+                    [status] => success
+                )
+
+        )
+
+)
+
+
+ENTERING createRecord for Leads
+FALLBACK CONTACT: 1176663000000446032
+Module: Deals
+Payload: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [Amount] => 356225
+                    [Closing_Date] => 2026-03-25
+                    [Stage] => Proposal/Price Quote
+                    [Description] => deals won
+                    [Owner] => Array
+                        (
+                            [id] => 1176663000000436001
+                        )
+
+                    [Deal_Name] => Website Project
+                    [Pipeline] => Sales Pipeline Standard
+                    [Layout] => 1176663000000000173
+                    [Contact_Name] => 1176663000000446032
+                )
+
+        )
+
+)
+
+Response: Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [code] => SUCCESS
+                    [details] => Array
+                        (
+                            [Modified_Time] => 2026-02-16T11:14:33+05:30
+                            [Modified_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                            [Created_Time] => 2026-02-16T11:14:33+05:30
+                            [id] => 1176663000000446114
+                            [Created_By] => Array
+                                (
+                                    [name] => Charles Charles
+                                    [id] => 1176663000000436001
+                                )
+
+                        )
+
+                    [message] => record added
+                    [status] => success
+                )
+
+        )
+
+)
+
+
